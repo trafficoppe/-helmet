@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แบบทดสอบจราจร: ความสำคัญของหมวกนิรภัย</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-scenery"></div>
+    
+    <div class="quiz-container">
+        <div class="header">
+            <h1>🚦 ขับขี่ปลอดภัย 🛵</h1>
+            <p>มาเรียนรู้เรื่องหมวกกันน็อกกันเถอะ!</p>
+        </div>
+
+        <div id="quiz-section">
+            <div class="image-container">
+                <video id="question-video" controls autoplay playsinline loop>
+                    <source id="video-source" src="" type="video/mp4">
+                    เบราว์เซอร์ของคุณไม่รองรับการแสดงผลวิดีโอ
+                </video>
+            </div>
+            
+            <h2 id="question-text">โหลดคำถาม...</h2>
+            
+            <div id="options-container" class="options-container">
+                </div>
+
+            <button id="next-btn" class="hidden">ข้อต่อไป ➡</button>
+        </div>
+
+        <div id="result-section" class="hidden">
+            <h2>🎉 ยอดเยี่ยมมาก! 🎉</h2>
+            <p>เพราะทุกข้อคือความสำคัญของการสวมหมวกนิรภัย <br>อย่าลืมสวมหมวกกันน็อกทุกครั้งที่ซ้อนหรือขับขี่รถจักรยานยนต์นะครับ!</p>
+            <button id="restart-btn">อ่านอีกครั้ง 🔄</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
