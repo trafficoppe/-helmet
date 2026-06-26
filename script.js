@@ -1,3 +1,7 @@
+// โหลดไฟล์เสียง press.mp3 ที่คุณมี
+const clickSound = new Audio("press.mp3");
+const successSound = new Audio("success.mp3");
+
 // ข้อมูลคำถาม 4 ข้อ
 const quizData = [
     {
@@ -54,7 +58,6 @@ const quizSection = document.getElementById("quiz-section");
 const resultSection = document.getElementById("result-section");
 const restartBtn = document.getElementById("restart-btn");
 
-// ฟังก์ชันโหลดคำถาม
 function loadQuestion() {
     isOptionSelected = false;
     if (nextBtn) nextBtn.classList.add("hidden");
@@ -65,9 +68,18 @@ function loadQuestion() {
     // โหลดและเล่นวิดีโอ
     if (videoSource && questionVideo) {
         videoSource.src = currentQuiz.video;
+        
+        // --- แก้ไขตรงนี้: เพิ่มเงื่อนไขเช็คข้อแรก ---
+        if (currentQuestionIndex === 0) {
+            questionVideo.muted = true;  // ข้อแรกปิดเสียง เพื่อให้ Autoplay ทำงานได้
+        } else {
+            questionVideo.muted = false; // ข้อต่อๆ ไปเปิดเสียงได้ เพราะผู้ใช้คลิกเลือกคำตอบแล้ว
+        }
+        // ----------------------------------------
+        
         questionVideo.load(); 
         questionVideo.play().catch(error => {
-            console.log("เบราว์เซอร์บล็อกการเล่นอัตโนมัติชั่วคราว: ", error);
+            console.log("การเล่นวิดีโอถูกบล็อก: ", error);
         });
     }
 
@@ -88,6 +100,14 @@ function loadQuestion() {
 
 // ฟังก์ชันเมื่อผู้ใช้เลือกคำตอบ
 function selectOption(selectedButton) {
+    
+    // --- สั่งเล่นเสียง press.mp3 ทันทีที่กด ---
+    clickSound.currentTime = 0; // รีเซ็ตเสียงกลับไปเริ่มใหม่เผื่อกดรัวๆ
+    clickSound.play().catch(error => {
+        console.log("ไม่สามารถเล่นเสียงได้: ", error);
+    });
+    // ------------------------------------
+
     // กำหนดสถานะว่ามีการเลือกแล้ว เพื่อให้ปุ่ม Next ทำงานได้
     isOptionSelected = true;
     
@@ -97,17 +117,16 @@ function selectOption(selectedButton) {
     allButtons.forEach(btn => {
         btn.classList.remove("selected");
         btn.style.opacity = "1";
-        btn.style.cursor = "pointer"; // เปลี่ยนให้เมาส์กลับมาเป็นรูปมือเพื่อชี้ว่ากดเปลี่ยนได้
+        btn.style.cursor = "pointer";
     });
 
     // 2. ไฮไลท์ปุ่มที่ถูกเลือก
     selectedButton.classList.add("selected");
     
-    // 3. ทำให้ปุ่มที่ไม่ได้เลือกจางลงเล็กน้อย (เพื่อให้จุดโฟกัสอยู่ที่คำตอบที่เลือก)
+    // 3. ทำให้ปุ่มที่ไม่ได้เลือกจางลงเล็กน้อย
     allButtons.forEach(btn => {
         if (btn !== selectedButton) {
             btn.style.opacity = "0.6";
-            // สังเกตว่าเราไม่ได้ใส่ cursor = "not-allowed" แล้ว เพื่อให้ผู้ใช้รู้ว่ามันยังกดเปลี่ยนได้
         }
     });
 
@@ -118,6 +137,20 @@ function selectOption(selectedButton) {
 // ฟังก์ชันเมื่อกดปุ่ม Next
 if (nextBtn) {
     nextBtn.addEventListener("click", () => {
+        
+        // สั่งเล่นเสียงตอนกดปุ่ม
+        successSound.currentTime = 0; 
+        successSound.play().catch(error => {
+            console.log("ไม่สามารถเล่นเสียงได้: ", error);
+        });
+
+        // --- ส่วนที่เพิ่มเข้ามา: สั่งให้เสียงหยุดเมื่อเวลาผ่านไป 1.5 วินาที ---
+        setTimeout(() => {
+            successSound.pause(); // สั่งหยุดเสียง
+            successSound.currentTime = 0; // รีเซ็ตกลับไปวินาทีที่ 0
+        }, 1500); // 1500 มิลลิวินาที = 1.5 วินาที (คุณสามารถปรับตัวเลขนี้ให้สั้นหรือยาวขึ้นได้ครับ)
+        // ------------------------------------------------------
+
         if (questionVideo) questionVideo.pause(); 
         
         currentQuestionIndex++;
