@@ -6,6 +6,8 @@
     <title>แบบทดสอบจราจร: ความสำคัญของหมวกนิรภัย</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Itim&family=Mali:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
     <div class="background-scenery"></div>
     
     <div class="quiz-container">
@@ -25,18 +27,64 @@
             
             <h2 id="question-text">โหลดคำถาม...</h2>
             
-            <div id="options-container" class="options-container">
-                </div>
+            <div id="options-container" class="options-container"></div>
 
-            <button id="next-btn" class="hidden">ข้อต่อไป ➡</button>
+            <button id="next-btn" class="hidden">ถัดไป ➡</button>
+        </div>
+
+        <div id="pdf-section" class="hidden">
+            <h2>📄 ประกาศมหาวิทยาลัยมหิดล</h2>
+            <div class="pdf-container">
+                <iframe src="PDF.pdf#view=Fit&toolbar=0" width="100%" style="border: none; height: 65vh; min-height: 500px;"></iframe>
+            </div>
+            
+            <div class="pdf-buttons">
+                <a href="PDF.pdf" download="ประกาศมหาวิทยาลัยมหิดล.pdf" class="btn download-btn">⬇️ ดาวน์โหลด PDF</a>
+                <button id="next-to-result-btn" class="btn next-btn">ถัดไป ➡</button>
+            </div>
+        </div>
+
+        <div id="stats-section" class="hidden">
+            <h2 style="color: #FF4500; margin-bottom: 20px; text-align: center;">สถิติการลดความเสี่ยงเมื่อสวมหมวกนิรภัย</h2>
+            
+            <div class="stats-group">
+                <h3 class="stats-heading">เซฟสมองและศีรษะ</h3>
+                <ul class="stats-list">
+                    <li>ลดเสี่ยงบาดเจ็บศีรษะโดยรวม 69%</li>
+                    <li>ลดบาดเจ็บสมองรุนแรงได้ 65% - 74%</li>
+                    <li>ลดโอกาสกะโหลกร้าวหรือแตกกว่า 70%</li>
+                </ul>
+            </div>
+
+            <div class="stats-group" style="border-left-color: #FF8C00;">
+                <h3 class="stats-heading">เซฟชีวิตจากสถิติอุบัติเหตุรายปี</h3>
+                <ul class="stats-list">
+                    <li>ลดความเสี่ยงเสียชีวิตลงได้ 39% - 42%</li>
+                    <li>สถิติชี้: 80% ของผู้เสียชีวิตรายปีคือคนไม่ใส่หมวก</li>
+                    <li>คนไม่ใส่หมวกเสี่ยงตายสูงกว่าคนใส่ถึง 3 เท่า</li>
+                </ul>
+            </div>
+
+            <div class="stats-group" style="border-left-color: #4682B4;">
+                <h3 class="stats-heading">เซฟเวลาและอนาคต</h3>
+                <ul class="stats-list">
+                    <li>ลดเวลาพักฟื้นในโรงพยาบาลกว่า 50%</li>
+                    <li>ลดความเสี่ยงเป็นอัมพาตหรือพิการถาวร</li>
+                </ul>
+            </div>
+            
+            <div style="text-align: center; margin-top: 25px;">
+                <button id="next-to-final-btn" class="btn next-btn" style="width: 100%; max-width: 350px;">ถัดไป</button>
+            </div>
         </div>
 
         <div id="result-section" class="hidden">
-    <h2>🎉 ยอดเยี่ยมมาก! 🎉</h2>
-    <p>เพราะทุกข้อคือความสำคัญของการสวมหมวกนิรภัย <br>อย่าลืมสวมหมวกกันน็อกทุกครั้งที่ซ้อนหรือขับขี่รถจักรยานยนต์นะครับ!</p>
-    
-    <button id="final-ok-btn" class="hidden">OK! ต่อไปฉันจะสวมหมวกทุกครั้ง 🛵</button>
-</div>
+            <h2>🎉 ยอดเยี่ยมมาก! 🎉</h2>
+            <p>เพราะทุกข้อคือความสำคัญของการสวมหมวกนิรภัย <br>อย่าลืมสวมหมวกกันน็อกทุกครั้งที่ซ้อนหรือขับขี่รถจักรยานยนต์นะครับ!</p>
+            <button id="final-ok-btn" class="hidden">OK! ต่อไปฉันจะสวมหมวกทุกครั้ง 🛵</button>
+        </div>
+        
+    </div>
 
     <script src="script.js"></script>
 </body>

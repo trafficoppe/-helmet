@@ -1,20 +1,14 @@
 // โหลดไฟล์เสียง
 const clickSound = new Audio("press.mp3");
 const successSound = new Audio("success.mp3");
-const endSound = new Audio("end.wav"); // เพิ่มบรรทัดนี้เพื่อโหลดเสียงตอนจบ
+const endSound = new Audio("end.wav"); 
 
-// ชุดคำตอบ 10 ข้อสำหรับสุ่มในข้อ 1
+// ชุดคำตอบ 4 ข้อสำหรับสุ่มในข้อ 1
 const excuses = [
-    "รีบไปนิด เผลอลืมหยิบมาด้วยแหะๆ",
-    "ไปแค่ปากซอย ขอรับลมเย็นๆ แป๊บนึงน้า",
-    "เพิ่งทำผมมา แอบกลัวผมเสียทรงง่ะ",
-    "เล่นกับน้องหมาแมวเพลิน ลืมหยิบมาเฉยเลย",
-    "แวะซื้อของหลายร้าน ขี้เกียจถอดใส่บ่อยง่า",
-    "วุ่นเตรียมของให้เด็กๆ จนลืมของตัวเองเลย",
-    "อากาศร๊อนร้อน ขอขับรับลมชิลๆ หน่อยน้า",
-    "รีบไปรับพัสดุ กลัวพี่ๆ ขนส่งรอนานค้าบ",
-    "หมวกใบโปรดเพิ่งซัก ยังไม่แห้งพร้อมใช้งับ",
-    "คว้ากุญแจได้ก็พุ่งเลย ลืมสนิทจริงๆ ค้าบ"
+    "กลัวผมเสียทรง แล้วก็ร้อนด้วย",
+    "ขับใกล้ๆ ขับในพื้นที่ ไม่เป็นอะไรหรอก",
+    "ขี้เกียจพกพา รีบมาทำงาน",
+    "ขับช้า ไม่น่าจะเป็นอันตรายหรอก"
 ];
 
 // ชุดคำตอบ 10 ข้อสำหรับสุ่มในข้อ 2
@@ -31,64 +25,33 @@ const statsOptions = [
     "ใส่หมวกทุกวัน ช่วยกดตัวเลขความสูญเสีย 86% ให้ลดลงได้จริง"
 ];
 
-// ชุดคำตอบ 10 ข้อสำหรับสุ่มในข้อ 3
-const safeHelmetOptions = [
-    "ไซส์กระชับพอดีหัว ส่ายหน้าไม่หลุด เซฟชัวร์ครับ",
-    "ฟังเสียงคลิกล็อกคางให้แน่น ปลอดภัยไม่หลุดแน่นอนน้า",
-    "ฟองน้ำข้างในยังแน่น ซับแรงกระแทกได้เต็มร้อยเลยฮะ",
-    "หมวกใบโปรดมี มอก. อุ่นใจพร้อมลุยทุกเส้นทางครับ",
-    "เลือกแบบเต็มใบปิดคาง เซฟใบหน้าสวยหล่อได้สุดๆ ไปเลย",
-    "ชิลด์หน้าใสปิ๊ง มองทางชัดเจน ขับขี่ปลอดภัยครับ",
-    "หมวกอายุไม่เกิน 5 ปี โครงสร้างยังแข็งแรงดูแลเราได้เต็มที่น้า",
-    "ถ้าเคยตกกระแทกแรงๆ เปลี่ยนใบใหม่เพื่อความชัวร์ดีกว่าครับ",
-    "ใช้หมวกสีสว่างเตะตา ขับกลับตอนกลางคืนก็ปลอดภัยฮะ",
-    "ปรับสายรัดคางให้พอดี ไม่อึดอัดแต่เซฟชีวิตได้จริงครับ"
-];
-
 // ฟังก์ชันสำหรับสุ่มเลือกตัวเลือกตามจำนวนที่กำหนด
 function getRandomOptions(arr, count) {
     const shuffled = [...arr].sort(() => 0.5 - Math.random());
     return shuffled.slice(0, count);
 }
 
-// ข้อมูลคำถาม 4 ข้อ
+// ข้อมูลคำถาม 3 ข้อ
 const quizData = [
     {
         video: "vid7.mp4",
         headerTitle: "💥 สมองมีก้อนเดียว อะไหล่ไม่มีเปลี่ยน!",
         headerSubtitle: "หมวกใบหลักร้อย ปกป้องชีวิตหลักล้าน ใส่เถอะครับ!",
-        question: "1. วันนี้หมวกกันน็อกคู่ใจ หายไปไหนเอ่ย?",
-        options: [] // ปล่อยว่างไว้ เดี๋ยวเราจะสุ่มใส่ให้ตอนโหลดคำถาม
+        question: "1. เอ๊ะ!ทำไมวันนี้ ไม่สวมหมวกกันน็อคเอ่ย?",
+        options: [] 
     },
     {
         video: "vid8.mp4",
         headerTitle: "🛡️ ใส่ทั้งที ต้องดีและเซฟชัวร์!",
         headerSubtitle: "หมวกกันน็อกที่ดีคือยันต์กันตุย เลือกให้เป๊ะ รอดแน่นอน!",
         question: "2. รู้ไหมเอ่ย... น้องหมวกกันน็อก 1 ใบ ช่วยอะไรได้บ้าง",
-        options: [] // ปล่อยว่างไว้ เดี๋ยวเราจะสุ่มใส่ให้ตอนโหลดคำถาม
-    },
-    {
-        video: "vid9.mp4", 
-        headerTitle: "สวมให้เป๊ะ เซฟชัวร์ 100%",
-        headerSubtitle: "ใส่หมวกถูกวิธี ชีวิตปลอดภัยขึ้นอีกเยอะเลยครับ!",
-        question: "3. รู้ป่าวเอ่ย... สวมหมวกกันน็อกแบบไหนที่เรียกว่า \"ใส่เป๊ะ เซฟชัวร์ 100%\"?",
-        options: [] // ปล่อยว่างไว้ เดี๋ยวเราจะสุ่มใส่ให้ตอนโหลดคำถาม
-    },
-    {
-        video: "vid1.mp4", 
-        question: "4. เราควรเปลี่ยนหมวกกันน็อกใบใหม่เมื่อไหร่ดีนะ?",
-        options: [
-            "เมื่อหมวกกันน็อกเคยหล่นกระแทกพื้นแรงๆ ไปแล้ว",
-            "เมื่อเคยเกิดอุบัติเหตุมาแล้ว แม้ภายนอกจะดูไม่แตกหัก",
-            "เมื่อใช้งานมานานเกิน 3-5 ปี ฟองน้ำด้านในเริ่มเสื่อม",
-            "เมื่อสายรัดคางชำรุด หรือตัวล็อคทำงานไม่ปกติ"
-        ]
+        options: [] 
     },
     {
         video: "vid5.mp4", 
         headerTitle: "ความปลอดภัยในรั้วมหาวิทยาลัย",
         headerSubtitle: "กฎระเบียบมีไว้เพื่อความปลอดภัยของชาวมหิดลทุกคนครับ",
-        question: "5. คุณทราบประกาศมหาวิทยาลัยมหิดล เรื่อง หลักเกณฑ์การสวมหมวกนิรภัยในการใช้รถจักรยานยนต์ มหาวิทยาลัยมหิดล ศาลายา หรือไม่?",
+        question: "3. คุณทราบประกาศมหาวิทยาลัยมหิดล เรื่อง หลักเกณฑ์การสวมหมวกนิรภัยในการใช้รถจักรยานยนต์ มหาวิทยาลัยมหิดล ศาลายา หรือไม่?",
         options: [
             "ทราบ",
             "ไม่ทราบ"
@@ -98,60 +61,62 @@ const quizData = [
 
 let currentQuestionIndex = 0;
 let isOptionSelected = false;
+let answerQ1 = "";
+let answerQ3 = "";
+let isPdfDownloaded = "ไม่ดาวน์โหลด"; // 👈 ตั้งค่าเริ่มต้นไว้ว่ายังไม่โหลด
 
+// ประกาศตัวแปรทั้งหมด
 const questionVideo = document.getElementById("question-video");
 const videoSource = document.getElementById("video-source");
 const questionText = document.getElementById("question-text");
 const optionsContainer = document.getElementById("options-container");
 const nextBtn = document.getElementById("next-btn");
+
 const quizSection = document.getElementById("quiz-section");
+const pdfSection = document.getElementById("pdf-section");
+const nextToResultBtn = document.getElementById("next-to-result-btn");
+// ดึงปุ่มดาวน์โหลดมาใช้งาน
+const downloadBtn = document.querySelector(".download-btn");
+
+if (downloadBtn) {
+    downloadBtn.addEventListener("click", () => {
+        // ถ้ามีการคลิกปุ่มนี้ ให้เปลี่ยนสถานะเป็นดาวน์โหลดแล้ว
+        isPdfDownloaded = "ดาวน์โหลดแล้ว"; 
+    });
+}
+const statsSection = document.getElementById("stats-section");
+const nextToFinalBtn = document.getElementById("next-to-final-btn");
 const resultSection = document.getElementById("result-section");
-const restartBtn = document.getElementById("restart-btn");
+const finalOkBtn = document.getElementById("final-ok-btn");
 
 function loadQuestion() {
     isOptionSelected = false;
     if (nextBtn) nextBtn.classList.add("hidden");
     if (optionsContainer) optionsContainer.innerHTML = "";
     
-    // --- สุ่มคำตอบ 4 ข้อสำหรับคำถามข้อ 1 ---
     if (currentQuestionIndex === 0) {
         quizData[0].options = getRandomOptions(excuses, 4);
     }
-
-    // --- สุ่มคำตอบ 4 ข้อสำหรับคำถามข้อ 2 ---
     if (currentQuestionIndex === 1) {
         quizData[1].options = getRandomOptions(statsOptions, 4);
-    }
-
-    // --- สุ่มคำตอบ 4 ข้อสำหรับคำถามข้อ 3 ---
-    if (currentQuestionIndex === 2) {
-        quizData[2].options = getRandomOptions(safeHelmetOptions, 4);
     }
     
     const currentQuiz = quizData[currentQuestionIndex];
     
-    // 1. โหลดและเล่นวิดีโอ
     if (videoSource && questionVideo) {
         videoSource.src = currentQuiz.video;
-        
-        // เช็คเงื่อนไข: ข้อแรกปิดเสียงเพื่อให้เล่นอัตโนมัติได้ ข้อต่อไปเปิดเสียง
         if (currentQuestionIndex === 0) {
             questionVideo.muted = true;  
         } else {
             questionVideo.muted = false; 
         }
-        
         questionVideo.load(); 
-        questionVideo.play().catch(error => {
-            console.log("การเล่นวิดีโอถูกบล็อก: ", error);
-        });
+        questionVideo.play().catch(error => console.log(error));
     }
 
-    // 2. เปลี่ยนข้อความ Header ด้านบนตามข้อนั้นๆ
     const headerTitle = document.getElementById("header-title");
     const headerSubtitle = document.getElementById("header-subtitle");
     
-    // ตรวจสอบว่าใน quizData มีกำหนด headerTitle ไว้หรือไม่ แล้วค่อยเปลี่ยน
     if (headerTitle && currentQuiz.headerTitle) {
         headerTitle.textContent = currentQuiz.headerTitle;
     }
@@ -159,12 +124,10 @@ function loadQuestion() {
         headerSubtitle.textContent = currentQuiz.headerSubtitle;
     }
 
-    // 3. โหลดข้อความคำถาม
     if (questionText) {
         questionText.innerText = currentQuiz.question;
     }
 
-    // 4. สร้างปุ่มตัวเลือก
     if (optionsContainer) {
         currentQuiz.options.forEach((option) => {
             const button = document.createElement("button");
@@ -176,58 +139,47 @@ function loadQuestion() {
     }
 }
 
-// ฟังก์ชันเมื่อผู้ใช้เลือกคำตอบ
 function selectOption(selectedButton) {
-    
-    // --- สั่งเล่นเสียง press.mp3 ทันทีที่กด ---
-    clickSound.currentTime = 0; // รีเซ็ตเสียงกลับไปเริ่มใหม่เผื่อกดรัวๆ
-    clickSound.play().catch(error => {
-        console.log("ไม่สามารถเล่นเสียงได้: ", error);
-    });
-    // ------------------------------------
-
-    // กำหนดสถานะว่ามีการเลือกแล้ว เพื่อให้ปุ่ม Next ทำงานได้
+    clickSound.currentTime = 0; 
+    clickSound.play().catch(error => console.log(error));
     isOptionSelected = true;
+
+    // --- โค้ดที่เพิ่มเข้ามา: บันทึกคำตอบที่เลือก ---
+    if (currentQuestionIndex === 0) {
+        answerQ1 = selectedButton.innerText; // เก็บคำตอบข้อ 1
+    } else if (currentQuestionIndex === 2) {
+        answerQ3 = selectedButton.innerText; // เก็บคำตอบข้อ 3
+    }
+    // ------------------------------------------
     
     const allButtons = document.querySelectorAll(".option-btn");
-    
-    // 1. รีเซ็ตสถานะของปุ่มทั้งหมดให้กลับมาเป็นปกติก่อน
     allButtons.forEach(btn => {
         btn.classList.remove("selected");
         btn.style.opacity = "1";
         btn.style.cursor = "pointer";
     });
 
-    // 2. ไฮไลท์ปุ่มที่ถูกเลือก
     selectedButton.classList.add("selected");
     
-    // 3. ทำให้ปุ่มที่ไม่ได้เลือกจางลงเล็กน้อย
     allButtons.forEach(btn => {
         if (btn !== selectedButton) {
             btn.style.opacity = "0.6";
         }
     });
 
-    // 4. แสดงปุ่ม Next
     if (nextBtn) nextBtn.classList.remove("hidden");
 }
 
-// ฟังก์ชันเมื่อกดปุ่ม Next
+// กดปุ่ม Next ในหน้าคำถาม
 if (nextBtn) {
     nextBtn.addEventListener("click", () => {
-        
-        // สั่งเล่นเสียงตอนกดปุ่ม
         successSound.currentTime = 0; 
-        successSound.play().catch(error => {
-            console.log("ไม่สามารถเล่นเสียงได้: ", error);
-        });
+        successSound.play().catch(error => console.log(error));
 
-        // --- ส่วนที่เพิ่มเข้ามา: สั่งให้เสียงหยุดเมื่อเวลาผ่านไป 1.5 วินาที ---
         setTimeout(() => {
-            successSound.pause(); // สั่งหยุดเสียง
-            successSound.currentTime = 0; // รีเซ็ตกลับไปวินาทีที่ 0
-        }, 1500); // 1500 มิลลิวินาที = 1.5 วินาที (คุณสามารถปรับตัวเลขนี้ให้สั้นหรือยาวขึ้นได้ครับ)
-        // ------------------------------------------------------
+            successSound.pause(); 
+            successSound.currentTime = 0; 
+        }, 1500); 
 
         if (questionVideo) questionVideo.pause(); 
         
@@ -235,90 +187,99 @@ if (nextBtn) {
         if (currentQuestionIndex < quizData.length) {
             loadQuestion();
         } else {
-            showResult();
+            // จบ 3 ข้อ ไปหน้า PDF
+            if (quizSection) quizSection.classList.add("hidden");
+            if (pdfSection) pdfSection.classList.remove("hidden");
         }
+    });
+}
+
+// กดปุ่ม "ถัดไป ➡" ในหน้า PDF (ไปหน้าสถิติ)
+if (nextToResultBtn) {
+    nextToResultBtn.addEventListener("click", () => {
+        clickSound.currentTime = 0; 
+        clickSound.play().catch(error => console.log(error));
+
+        if (pdfSection) pdfSection.classList.add("hidden");
+        if (statsSection) statsSection.classList.remove("hidden");
+    });
+}
+
+// กดปุ่ม "ถัดไป" ในหน้าสถิติ (ไปหน้าสรุปผลตอนจบ)
+if (nextToFinalBtn) {
+    nextToFinalBtn.addEventListener("click", () => {
+        clickSound.currentTime = 0; 
+        clickSound.play().catch(error => console.log(error));
+
+        if (statsSection) statsSection.classList.add("hidden");
+        showResult();
     });
 }
 
 // ฟังก์ชันแสดงหน้าต่างตอนจบ
 function showResult() {
-    if (quizSection) quizSection.classList.add("hidden");
     if (resultSection) resultSection.classList.remove("hidden");
+    if (finalOkBtn) finalOkBtn.classList.remove("hidden");
     
-    // เพิ่มคำสั่งเล่นเสียงตอนจบ
-    endSound.currentTime = 0; // เริ่มเล่นใหม่ตั้งแต่ต้น
-    endSound.play().catch(error => {
-        console.log("ไม่สามารถเล่นเสียงได้: ", error);
-    });
-}
-
-// ฟังก์ชันเริ่มใหม่
-if (restartBtn) {
-    restartBtn.addEventListener("click", () => {
-        // สั่งหยุดเสียงตอนจบและรีเซ็ตเวลา
-        endSound.pause();
-        endSound.currentTime = 0;
-
-        currentQuestionIndex = 0;
-        if (quizSection) quizSection.classList.remove("hidden");
-        if (resultSection) resultSection.classList.add("hidden");
-        loadQuestion();
-    });
-}
-// ดึงปุ่ม OK มาใช้งาน (นำไปวางรวมกับกลุ่มประกาศตัวแปรด้านบนของไฟล์)[cite: 2]
-const okBtn = document.getElementById("ok-btn");
-
-// ดึงปุ่มใหม่มาใช้งาน (นำไปวางรวมกับกลุ่มประกาศตัวแปรด้านบนของไฟล์)
-const finalOkBtn = document.getElementById("final-ok-btn");
-
-// ปรับแก้ฟังก์ชัน showResult() ใหม่ให้เหลือแค่ปุ่มเดียว
-function showResult() {
-    if (quizSection) quizSection.classList.add("hidden");
-    if (resultSection) resultSection.classList.remove("hidden");
-    
-    // ซ่อนปุ่มไว้ก่อน
-    if (finalOkBtn) finalOkBtn.classList.add("hidden");
-    
-    // สั่งเล่นเสียงตอนจบ
     endSound.currentTime = 0; 
-    endSound.play().catch(error => {
-        console.log("ไม่สามารถเล่นเสียงได้: ", error);
-        // กรณีเบราว์เซอร์บล็อกเสียง ให้แสดงปุ่มเลย ผู้ใช้จะได้กดต่อได้
-        if (finalOkBtn) finalOkBtn.classList.remove("hidden");
-    });
-
-    // 🟢 ตรวจจับเมื่อไฟล์เสียงเล่นจบ แล้วค่อยแสดงปุ่ม
-    endSound.onended = function() {
-        if (finalOkBtn) finalOkBtn.classList.remove("hidden");
-    };
+    endSound.play().catch(error => console.log(error));
 }
 
-// การทำงานเมื่อผู้ใช้กดปุ่ม "OK! ต่อไปฉันจะสวมหมวกทุกครั้ง"
+// สร้างตัวแปรไว้จำว่าผู้ใช้กดส่งข้อมูลไปหรือยัง
+let isSubmitted = false; 
+
+// กดปุ่ม OK หน้าสุดท้าย
 if (finalOkBtn) {
     finalOkBtn.addEventListener("click", () => {
         
-        // 1. หยุดเสียงตอนจบที่อาจจะค้างอยู่
+        // 1. ถ้าเคยกดไปแล้ว ให้เด้งเตือนแล้วหยุดการทำงานทันที (กันคนกดเบิ้ล)
+        if (isSubmitted) {
+            alert("คุณส่งแบบสอบถามแล้ว");
+            return; 
+        }
+
+        // 2. ล็อกปุ่มทันทีที่กดครั้งแรก
+        isSubmitted = true;
+
         endSound.pause();
         endSound.currentTime = 0;
 
-        // 2. สั่งเล่นเสียง success ทันทีที่กด
         successSound.currentTime = 0; 
-        successSound.play().catch(error => {
-            console.log("ไม่สามารถเล่นเสียงได้: ", error);
-        });
+        successSound.play().catch(error => console.log(error));
 
-        // 3. สั่งให้เสียงตัดจบภายใน 1 วินาที (ไม่ให้ดังยาวเกินไป)
         setTimeout(() => {
             successSound.pause();
             successSound.currentTime = 0;
         }, 1000); 
 
-        // 4. หน่วงเวลาสั้นๆ (0.3 วิ) ให้ปุ่มยุบตัวก่อน แล้วเด้ง Popup ว่า "ขอบคุณ"
+        // 3. ส่งข้อมูลไป Google Sheets
+        // ⚠️ อย่าลืมใส่ URL ของ Web App ตรงนี้นะครับ
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzx6u5zicrgkn3rIwXZ1pnmBuGq10klCsFxGhjez6OIZmZkLEQmnCj_8lRNPETg86rHVw/exec'; 
+        
+        fetch(scriptURL, {
+            method: 'POST',
+            mode: 'no-cors',
+            body: new URLSearchParams({
+                'q1': answerQ1,
+                'q3': answerQ3,
+                'downloadStatus': isPdfDownloaded
+            })
+        })
+        .then(response => console.log('ส่งคำสั่งบันทึกแล้ว'))
+        .catch(error => console.error('บันทึกไม่สำเร็จ:', error.message));
+
+        // 4. เด้ง Popup ขอบคุณ และปิดแท็บ
         setTimeout(() => {
-            alert("ขอบคุณครับ!");
+            alert("ขอบคุณที่ให้ความร่วมมือ");
             
-            // หากต้องการให้พอกด OK ใน Popup แล้วรีเฟรชเริ่มใหม่ ให้เอา // ข้างหน้าบรรทัดล่างออกครับ
-            // window.location.reload();
+            // สั่งปิดแท็บหน้าต่างเบราว์เซอร์
+            window.close();
+            
+            // กรณีเปิดใน PC บางเบราว์เซอร์อาจจะบล็อกการปิดแท็บ 
+            // จึงใส่คำสั่งเด้งกลับไปหน้าแรกรอไว้เป็นแผนสำรองครับ
+            setTimeout(() => {
+                window.location.reload(); 
+            }, 500);
             
         }, 300); 
     });

@@ -2,11 +2,11 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Mali', cursive; /* เปลี่ยนเป็น Mali ตรงนี้ */
+    font-family: 'Mali', cursive;
 }
 
 body {
-    background-color: #87CEEB; /* สีฟ้าท้องฟ้า */
+    background-color: #87CEEB;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -16,7 +16,6 @@ body {
     overflow-x: hidden;
 }
 
-/* พื้นหลังตกแต่งแนวถนน */
 body::after {
     content: '';
     position: fixed;
@@ -28,6 +27,7 @@ body::after {
     z-index: -1;
     border-top: 10px solid #8B4513;
 }
+
 body::before {
     content: '';
     position: fixed;
@@ -46,7 +46,7 @@ body::before {
     border-radius: 20px;
     padding: 30px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-    border: 5px solid #FFD700; /* กรอบสีเหลืองจราจร */
+    border: 5px solid #FFD700;
     text-align: center;
 }
 
@@ -76,7 +76,7 @@ body::before {
     max-height: 250px;
     object-fit: cover;
     display: block;
-    background-color: #000; /* เพิ่มพื้นหลังสีดำกันขอบแหว่งระหว่างโหลดคลิป */
+    background-color: #000;
 }
 
 #question-text {
@@ -84,16 +84,13 @@ body::before {
     color: #333;
     margin-bottom: 20px;
     text-align: left;
-    
-    /* จัดบรรทัดที่ 2 ไม่ให้ล้ำไปใต้ตัวเลข (คงไว้เหมือนเดิม) */
     padding-left: 28px; 
     text-indent: -28px; 
-    
-    /* แก้ปัญหาการตัดคำภาษาไทยแหว่ง */
     word-break: normal; 
     overflow-wrap: break-word;
     line-height: 1.5; 
 }
+
 .options-container {
     display: flex;
     flex-direction: column;
@@ -150,13 +147,6 @@ body::before {
     display: none !important;
 }
 
-.result-img {
-    width: 200px;
-    margin: 0 auto 20px auto;
-    display: block;
-    border-radius: 50%;
-}
-
 #result-section h2 {
     color: #32CD32;
     margin-bottom: 15px;
@@ -168,6 +158,7 @@ body::before {
     margin-bottom: 25px;
     line-height: 1.6;
 }
+
 #final-ok-btn {
     background-color: #32CD32;
     color: white;
@@ -177,22 +168,121 @@ body::before {
     font-size: 18px;
     font-weight: 600;
     cursor: pointer;
-    /* ปรับ transition ให้ตอนเด้งกลับดูเป็นธรรมชาติขึ้น */
     transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.1s ease;
-    box-shadow: 0 5px 0px #228B22; /* สร้างความหนาให้ปุ่ม 5px */
+    box-shadow: 0 5px 0px #228B22; 
     margin-top: 10px;
     width: 100%;
     max-width: 350px;
     display: inline-block;
 }
 
-/* ตอนเอาเมาส์ไปจ่อเฉยๆ (Hover) - ให้แค่สว่างขึ้น แต่ยังไม่ยุบ */
 #final-ok-btn:hover {
     background-color: #3CB371;
 }
 
-/* ตอนกดคลิกค้างไว้ (Active) - ปุ่มจะยุบลงไปและเงาหายไป เหมือนโดนกดจริงๆ */
 #final-ok-btn:active {
-    transform: translateY(5px); /* ยุบลงมา 5px เท่ากับความหนาของเงา */
-    box-shadow: 0 0px 0px #228B22; /* ลดเงาเหลือ 0 */
+    transform: translateY(5px);
+    box-shadow: 0 0px 0px #228B22; 
+}
+
+/* ================= CSS สำหรับหน้า PDF ================= */
+#pdf-section {
+    width: 100%;
+    text-align: center;
+}
+
+#pdf-section h2 {
+    color: #FF4500;
+    margin-bottom: 15px;
+}
+
+.pdf-container {
+    margin: 15px 0 25px 0;
+    border: 4px dashed #32CD32;
+    border-radius: 15px;
+    overflow: hidden;
+    background-color: #f9f9f9;
+}
+
+.pdf-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap; 
+}
+
+.btn {
+    padding: 12px 25px;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none; 
+    display: inline-block;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.download-btn {
+    background-color: #4682B4;
+    color: white;
+    box-shadow: 0 4px 0px #315f86;
+}
+
+.download-btn:hover {
+    background-color: #5A9BD5;
+    transform: translateY(2px);
+    box-shadow: 0 2px 0px #315f86;
+}
+
+.next-btn {
+    background-color: #FF8C00;
+    color: white;
+    box-shadow: 0 4px 0px #D2691E;
+}
+
+.next-btn:hover {
+    background-color: #FFA500;
+    transform: translateY(2px);
+    box-shadow: 0 2px 0px #D2691E;
+}
+
+/* ================= CSS สำหรับหน้าสถิติแบบใหม่ ================= */
+#stats-section {
+    width: 100%;
+    text-align: left;
+}
+
+#stats-section h2 {
+    font-size: 22px;
+    text-shadow: none;
+}
+
+.stats-group {
+    background-color: #f9f9f9;
+    border-left: 6px solid #32CD32; 
+    border-radius: 8px;
+    padding: 15px 15px 15px 20px;
+    margin-bottom: 15px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.05);
+}
+
+.stats-heading {
+    color: #333;
+    font-size: 18px;
+    margin-bottom: 10px;
+    border-bottom: 1px dashed #ccc;
+    padding-bottom: 5px;
+}
+
+.stats-list {
+    list-style-type: disc;
+    margin-left: 20px;
+    color: #555;
+}
+
+.stats-list li {
+    margin-bottom: 8px;
+    font-size: 16px;
+    line-height: 1.5;
 }
